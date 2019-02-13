@@ -11,4 +11,5 @@
 <%# link_to ist standardmäßig eine Get-Methode. Wenn kein spezieller controller angegeben ist wird der aktuelle genutzt
     -> In diesem Fall ist der Controller 'articles'"%>
 
+<%= link_to 'Edit', edit_article_path(@article) %> |
 <%= link_to 'Back', articles_path %>

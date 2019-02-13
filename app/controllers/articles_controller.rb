@@ -21,7 +21,11 @@ class ArticlesController < ApplicationController
   # Action "new" hat keine weitere Logik, ruft aber den view "new.html.erb" auf
 
   def new
+    @article = Article.new
+  end
 
+  def edit
+    @article = Article.find(params[:id])
   end
 
   # Sobald innerhalb des Formulars "new.html.erb" der Submit-Button gedrückt wird wird automatisch (weil submit)
@@ -31,8 +35,31 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
 
-    @article.save
-    redirect_to @article
+    if @article.save
+      redirect_to @article
+    else
+      # Wenn die Validierung fehlschlägt wird nicht redirect_to verwendet sondern render.
+      # Redirect_to entspricht in rails einem neuen Request wohingegen render sich auf den aktuellen request bezieht.
+      # Weiterhin werden auch die Werte der Instanzvariable @article in der Form genutzt
+      render 'new'
+    end
+  end
+
+  def update
+    @article = Article.find(params[:id])
+
+    if @article.update(article_params)
+      redirect_to @article
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @article = Article.find(params[:id])
+    @article.destroy
+
+    redirect_to articles_path
   end
 
   private

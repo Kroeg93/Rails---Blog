@@ -1,0 +1,24 @@
+<h1>Listing all Articles</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+  </tr>
+</table>
+
+<%@articles.each do |article| %>
+  <table>
+
+    <tr>
+      <td><%= article.title %></td>
+      <td><%= article.text %></td>
+      <td><%= link_to 'Show', article_path(article) %></td>
+    </tr>
+<% end %>
+</table>
+
+<%# link_to ist standardmäßig eine Get-Methode. Wenn kein spezieller controller angegeben ist wird der aktuelle genutzt
+    -> In diesem Fall ist der Controller 'articles'"%>
+
+<%= link_to 'Create new Article', new_article_path %>

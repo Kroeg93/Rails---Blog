@@ -1,0 +1,14 @@
+<p>
+  <strong>TITLE: </strong>
+  <%= @article.title %>
+</p>
+
+<p>
+  <strong>TEXT: </strong>
+  <%= @article.text %>
+</p>
+
+<%# link_to ist standardmäßig eine Get-Methode. Wenn kein spezieller controller angegeben ist wird der aktuelle genutzt
+    -> In diesem Fall ist der Controller 'articles'"%>
+
+<%= link_to 'Back', articles_path %>
